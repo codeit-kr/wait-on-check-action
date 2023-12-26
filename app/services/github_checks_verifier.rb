@@ -19,7 +19,10 @@ class GithubChecksVerifier < ApplicationService
 
   def call
     wait_for_checks
-  rescue CheckNeverRunError, CheckConclusionNotAllowedError => e
+  rescue CheckNeverRunError => e
+    puts e.message
+    exit(true)
+  rescue CheckConclusionNotAllowedError => e
     puts e.message
     exit(false)
   end

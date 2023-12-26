@@ -13,7 +13,7 @@ class GithubChecksVerifier < ApplicationService
   config_accessor :check_name, :workflow_name, :client, :repo, :ref
   config_accessor(:wait) { 30 } # set a default
   config_accessor(:check_regexp) { "" }
-  config_accessor(:allowed_conclusions) { ["success", "skipped"] }
+  config_accessor(:allowed_conclusions) { ["success", "skipped", "in_progress"] }
   config_accessor(:verbose) { true }
   config_accessor(:ignore_checks) { [] }
 

@@ -19,10 +19,7 @@ class GithubChecksVerifier < ApplicationService
 
   def call
     wait_for_checks
-  rescue CheckNeverRunError => e
-    puts e.message
-    exit(true)
-  rescue CheckConclusionNotAllowedError => e
+  rescue CheckNeverRunError, CheckConclusionNotAllowedError => e
     puts e.message
     exit(false)
   end
@@ -65,7 +62,7 @@ class GithubChecksVerifier < ApplicationService
   end
 
   def all_checks_complete(checks)
-    checks.all? { |check| check.status == "completed" }
+    checks.count == 1 || checks.any? { |check| check.status == "completed" }
   end
 
   def filters_present?

@@ -105,7 +105,5 @@ class GithubChecksVerifier < ApplicationService
     end
 
     show_checks_conclusion_message(all_checks)
-
-    fail_unless_all_conclusions_allowed(all_checks)
   end
 end
